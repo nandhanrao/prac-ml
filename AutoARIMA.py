@@ -2,7 +2,9 @@ import pandas as pd
 import pmdarima as pmd
 
 dataset = "Paleo"
-series = pd.read_csv(f'{dataset}.csv', header=0, index_col=0, parse_dates=True, squeeze=True)
+series = pd.read_csv(f'{dataset}.csv', header=0, index_col=0, parse_dates=True)
+if series.ndim > 1:
+    series = series.squeeze()
 
 def arimamodel(series):
     for header in series.iloc[:,0:17]:        
